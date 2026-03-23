@@ -1,0 +1,131 @@
+<ion-header class="detail-header ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/"
+        text=""
+        icon="arrow-back-outline"
+      ></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Movie Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="detail-content">
+  @if (movieService.currentMovie(); as movie) {
+  <section class="hero">
+    @if (hasPoster(movie.Poster)) {
+    <ion-img [src]="movie.Poster" [alt]="movie.Title"></ion-img>
+    } @else {
+    <div class="hero-fallback" aria-hidden="true">
+      <ion-icon name="image-outline"></ion-icon>
+    </div>
+    }
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-info">
+      <h2>{{ movie.Title }}</h2>
+      <div class="meta-line">
+        <span>{{ movie.Year }}</span>
+        <span class="dot"></span>
+        <span>{{ displayGenre(movie) }}</span>
+        <span class="dot"></span>
+        <span class="rating">
+          <ion-icon name="star"></ion-icon>
+          {{ displayRating(movie.imdbRating) }}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="action-wrapper">
+    @if (isFavorite()) {
+    <ion-button
+      expand="block"
+      class="favorite-button filled"
+      (click)="toggleFavorite()"
+    >
+      <ion-icon slot="start" name="heart-dislike-outline"></ion-icon>
+      Remove favorite
+    </ion-button>
+    } @else {
+    <ion-button
+      expand="block"
+      fill="outline"
+      class="favorite-button"
+      (click)="toggleFavorite()"
+    >
+      <ion-icon slot="start" name="heart-outline"></ion-icon>
+      Add favorite
+    </ion-button>
+    }
+  </section>
+
+  <ion-grid class="info-grid">
+    <ion-row>
+      <ion-col size="6">
+        <article class="info-card">
+          <h3>Director</h3>
+          <p>{{ fallbackValue(movie.Director) }}</p>
+        </article>
+      </ion-col>
+
+      <ion-col size="6">
+        <article class="info-card">
+          <h3>Runtime</h3>
+          <p>{{ fallbackValue(movie.Runtime) }}</p>
+        </article>
+      </ion-col>
+
+      <ion-col size="6">
+        <article class="info-card">
+          <h3>Actors</h3>
+          <p>{{ fallbackValue(movie.Actors) }}</p>
+        </article>
+      </ion-col>
+
+      <ion-col size="6">
+        <article class="info-card">
+          <h3>Type</h3>
+          <p>{{ displayType(movie.Type) }}</p>
+        </article>
+      </ion-col>
+
+      <ion-col size="12">
+        <article class="info-card">
+          <h3>IMDB Rating</h3>
+          <div class="rating-bar">
+            <div class="track">
+              <div
+                class="fill"
+                [style.width.%]="ratingProgress(movie.imdbRating)"
+              ></div>
+            </div>
+            <span>{{ displayRating(movie.imdbRating) }}/10</span>
+          </div>
+        </article>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <section class="synopsis">
+    <h3>Synopsis</h3>
+    <div class="synopsis-card">
+      @if (hasPlot(movie.Plot)) {
+      <p>{{ movie.Plot }}</p>
+      } @else {
+      <p class="muted">No synopsis available.</p>
+      }
+    </div>
+  </section>
+  } @else {
+  <section class="empty-detail">
+    <ion-icon aria-hidden="true" name="film-outline"></ion-icon>
+    <h2>No movie selected</h2>
+    <p>Go back to the list and select a movie to view its details.</p>
+    <ion-button routerLink="/" fill="solid">Back to list</ion-button>
+  </section>
+  }
+</ion-content>
