@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, computed } from '@angular/core';
 import { catchError, finalize, forkJoin, map, of, switchMap } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { Movie, OMDbDetailResponse, OMDbResponse } from '../models/movie.model';
 
 @Injectable({ providedIn: 'root' })
 export class MovieService {
   private http = inject(HttpClient);
-  private readonly API_URL = `https://www.omdbapi.com/?apikey=${environment.apiKeyOMDb}`;
+  private readonly API_URL = ``;
 
   private _movies = signal<Movie[]>([]);
   public movies = this._movies.asReadonly();
