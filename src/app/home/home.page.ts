@@ -9,6 +9,9 @@ import {
   IonCardContent,
   IonCardTitle,
   IonCardHeader,
+  IonFab,
+  IonFabButton,
+  IonIcon,
 } from '@ionic/angular/standalone';
 import { Geolocation } from '@capacitor/geolocation';
 import { Camera, CameraResultType } from '@capacitor/camera';
@@ -29,6 +32,9 @@ import { addIcons } from 'ionicons';
     IonCardContent,
     IonCardTitle,
     IonCardHeader,
+    IonFab,
+    IonFabButton,
+    IonIcon,
   ],
 })
 export class HomePage implements OnInit {
