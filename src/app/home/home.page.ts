@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
@@ -11,6 +11,10 @@ import {
   IonCardHeader,
 } from '@ionic/angular/standalone';
 import { Geolocation } from '@capacitor/geolocation';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { camera } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -28,6 +32,12 @@ import { Geolocation } from '@capacitor/geolocation';
   ],
 })
 export class HomePage implements OnInit {
+  public photo?: SafeResourceUrl;
+  private sanitizer = inject(DomSanitizer);
+  constructor() {
+    addIcons({ camera });
+  }
+
   public latitude?: number;
   public longitude?: number;
   public accuracy?: number;
@@ -42,6 +52,23 @@ export class HomePage implements OnInit {
       this.accuracy = position.coords.accuracy;
     } catch (error) {
       console.error('Error al obtener la geolocalización:', error);
+    }
+  }
+
+  public async takePicture(): Promise<void> {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 100,
+        allowEditing: false,
+        resultType: CameraResultType.Uri,
+      });
+      if (image.webPath) {
+        this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(
+          image.webPath,
+        );
+      }
+    } catch (error) {
+      console.error('Error al capturar la foto:', error);
     }
   }
 }
