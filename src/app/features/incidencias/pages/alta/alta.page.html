@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Nueva incidencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      @if (photoUri(); as photoUriValue) {
+      <img [src]="photoUriValue" alt="Foto de la incidencia" />
+      } @else {
+      <img
+        src="assets/incidencia-placeholder.svg"
+        alt="Aun no se ha capturado ninguna foto"
+      />
+      }
+    </ion-card-content>
+  </ion-card>
+
+  @if (latitude() !== null && longitude() !== null) {
+  <ion-item>
+    <ion-label>
+      Latitud: {{ latitude() }} - Longitud: {{ longitude() }}
+    </ion-label>
+  </ion-item>
+  }
+
+  <ion-button expand="block" (click)="capturarIncidencia()">
+    Obtener foto desde camara
+  </ion-button>
+</ion-content>
