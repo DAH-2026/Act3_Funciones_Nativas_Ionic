@@ -3,12 +3,12 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="add-report-title">Incident Ledger</ion-title>
+    <ion-title class="add-report-title">Global Reporter</ion-title>
     <ion-buttons slot="end">
       <div class="user-avatar">
         <ion-img
           alt="User"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVEG9A45FfTu-tOtC61MPgFb2VJy5BV5yJYbWPTQ_MnJImyf_mcAOmf7mSPI7LcwiSLW8wDGRFdGMdi7GfKq8bzLI0EC98F9f68Yt3G7lsMSON1Bnjkg6g30tTP8_BhQPZgFrXgrI4GQ7gbyFP59V6ruLBMHhbLyFHqgu6Dxj-xXVKCSf2hz1NnzBBvgLMlokgOOfYLB3Lnp2jfxI1h8SxG5OB6Xe5BJSPF_E0f8U6Y3mzGfcv2XctmFo_kKNMfeag-uN9TX38iuY"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoNmCnt-am-n70rAdbwoRt1pxn9vj_iS_KtOI6Nn4Qhx5qi6IPmYMcapfaW61Aso0JOL75U1h5fCXDxPdwrSMpgY4TqnqNkIz3HFznYlyr6tG5MVSRbrftcs5HXUKkAcc_pBAUizGcA1c3_Ob9MwvdjFkFBhvGIGJZDz4bUzr4xiP4eoaHMOFsGo5raM1RDPIGf62cwiDyvMSm2wQd1p-7pviC_ETFiPrevrhMi9iD4EtHKzauagfQ-ttpwkiDIR9TwHeIsBJJfAE"
         ></ion-img>
       </div>
     </ion-buttons>
@@ -53,7 +53,12 @@
 
         <!-- Capture Controls -->
         <div class="capture-controls">
-          <ion-button class="take-photo-button" (click)="captureReport()" fill="solid" expand="block">
+          <ion-button
+            class="take-photo-button"
+            (click)="captureReport()"
+            fill="solid"
+            expand="block"
+          >
             <ion-icon name="camera" class="button-icon"></ion-icon>
             <span>Take Photo</span>
           </ion-button>
