@@ -136,7 +136,9 @@
 
 .add-report-button {
   --background: #{$color-primary};
-  --color: #{$color-on-primary};
+  --color: #{$color-on-primary} !important;
+  --ion-color-contrast: #{$color-on-primary};
+  color: $color-on-primary !important;
   --padding-start: $spacing-md;
   --padding-end: $spacing-md;
   --padding-top: 8px;
@@ -147,9 +149,18 @@
   white-space: nowrap;
   min-width: 120px;
 
+  &::part(native) {
+    color: $color-on-primary !important;
+  }
+
   ion-icon {
     margin-right: 4px;
     font-size: $text-body-small-size;
+    color: inherit !important;
+  }
+
+  span {
+    color: inherit !important;
   }
 
   &:active {
@@ -316,7 +327,7 @@
     #{$color-primary} 0%,
     #{$color-primary-container} 100%
   );
-  color: $color-on-primary;
+  color: $color-on-primary !important;
   padding: $spacing-lg;
   border-radius: $border-radius-full;
   box-shadow: 0 8px 24px rgba($color-primary, 0.2);
@@ -324,6 +335,10 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+
+  * {
+    color: $color-on-primary !important;
+  }
 
   @media (max-width: 768px) {
     grid-column: span 1;
@@ -338,7 +353,8 @@
 
     .stats-icon {
       font-size: $text-headline-medium-size;
-      opacity: 0.5;
+      opacity: 0.75;
+      color: $color-on-primary !important;
     }
 
     .stats-badge {
@@ -347,6 +363,7 @@
       text-transform: uppercase;
       letter-spacing: $letter-spacing-widest;
       background-color: rgba(255, 255, 255, 0.2);
+      color: $color-on-primary !important;
       padding: 4px 8px;
       border-radius: $border-radius-full;
       display: block;
@@ -358,6 +375,7 @@
       @include typography-display-large;
       font-weight: $font-weight-bold;
       margin: 0 0 8px 0;
+      color: $color-on-primary !important;
     }
 
     .stats-label {
@@ -365,8 +383,9 @@
       font-weight: $font-weight-medium;
       text-transform: uppercase;
       letter-spacing: $letter-spacing-widest;
-      opacity: 0.8;
+      opacity: 1;
       margin: 0;
+      color: $color-on-primary !important;
     }
   }
 }
