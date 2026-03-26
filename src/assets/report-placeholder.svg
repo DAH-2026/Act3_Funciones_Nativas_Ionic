@@ -4,6 +4,6 @@
   <circle cx="250" cy="150" r="26" fill="#d9d9d9"/>
   <path d="M170 245 L250 185 L310 225 L360 170 L430 245 Z" fill="#d9d9d9"/>
   <text x="300" y="305" text-anchor="middle" font-family="Arial" font-size="20" fill="#666666">
-    Aun no se ha obtenido ninguna foto
+    No photo captured yet
   </text>
 </svg>

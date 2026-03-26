@@ -11,7 +11,7 @@ import {
 import { Toast } from '@capacitor/toast';
 
 @Component({
-  selector: 'app-listado',
+  selector: 'app-report-list',
   templateUrl: './reportList.page.html',
   standalone: true,
   imports: [
@@ -24,29 +24,29 @@ import { Toast } from '@capacitor/toast';
     IonToolbar,
   ],
 })
-export class ListadoPage {
-  private _incidenciasPrueba = signal([
+export class ReportListPage {
+  private _sampleReports = signal([
     {
       id: '1',
-      titulo: 'Farola averiada',
-      detalle: 'Luminaria sin funcionamiento en avenida principal.',
+      title: 'Streetlight broken',
+      details: 'Light fixture not working on main avenue.',
     },
     {
       id: '2',
-      titulo: 'Bache en calzada',
-      detalle: 'Desperfecto de pavimento frente al parque central.',
+      title: 'Pothole on road',
+      details: 'Pavement damage in front of central park.',
     },
     {
       id: '3',
-      titulo: 'Contenedor dañado',
-      detalle: 'Contenedor con tapa rota en zona residencial.',
+      title: 'Damaged bin',
+      details: 'Trash bin with broken lid in residential area.',
     },
   ]);
-  public incidenciasPrueba = this._incidenciasPrueba.asReadonly();
+  public sampleReports = this._sampleReports.asReadonly();
 
-  async mostrarMensajeEnConstruccion(): Promise<void> {
+  async showUnderConstructionMessage(): Promise<void> {
     await Toast.show({
-      text: 'En construccion',
+      text: 'Under construction',
       duration: 'short',
       position: 'bottom',
     });

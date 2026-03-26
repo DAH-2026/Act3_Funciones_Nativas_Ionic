@@ -1,16 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Listado de incidencias</ion-title>
+    <ion-title>Reports list</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    @for (incidencia of incidenciasPrueba(); track incidencia.id) {
-    <ion-item button detail="true" (click)="mostrarMensajeEnConstruccion()">
+    @for (report of sampleReports(); track report.id) {
+    <ion-item button detail="true" (click)="showUnderConstructionMessage()">
       <ion-label>
-        <h2>{{ incidencia.titulo }}</h2>
-        <p>{{ incidencia.detalle }}</p>
+        <h2>{{ report.title }}</h2>
+        <p>{{ report.details }}</p>
       </ion-label>
     </ion-item>
     }

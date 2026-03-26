@@ -2,22 +2,24 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'alta',
+    path: 'add',
     loadComponent: () =>
-      import('./features/addReport/addReport.page').then((m) => m.AltaPage),
-  },
-  {
-    path: 'listado',
-    loadComponent: () =>
-      import('./features/reportList/reportList.page').then(
-        (m) => m.ListadoPage,
+      import('./features/addReport/addReport.page').then(
+        (m) => m.AddReportPage,
       ),
   },
   {
-    path: 'inicio',
+    path: 'report-list',
     loadComponent: () =>
-      import('./features/home/home.page').then((m) => m.InicioPage),
+      import('./features/reportList/reportList.page').then(
+        (m) => m.ReportListPage,
+      ),
   },
-  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
-  { path: '**', redirectTo: 'inicio' },
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./features/home/home.page').then((m) => m.HomePage),
+  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home' },
 ];
