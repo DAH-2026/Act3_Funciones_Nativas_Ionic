@@ -35,12 +35,12 @@ export class ReportService {
     const photo = await Camera.getPhoto({
       quality: 85,
       allowEditing: false,
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.Base64,
       source: CameraSource.Camera,
     });
 
-    if (!photo.webPath)
-      throw new Error('Could not obtain the URI of the captured photo.');
+    if (!photo.base64String)
+      throw new Error('Could not obtain the base64 of the captured photo.');
 
     const position = await Geolocation.getCurrentPosition({
       enableHighAccuracy: true,
@@ -49,7 +49,7 @@ export class ReportService {
 
     const draftReport: Report = {
       id: globalThis.crypto?.randomUUID?.() ?? Date.now().toString(),
-      photoUri: photo.webPath,
+      photoUri: 'data:image/jpeg;base64,' + photo.base64String,
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
       createdAt: new Date().toISOString(),
