@@ -15,16 +15,11 @@ export class ReportService {
   private _currentReport = signal<Report | null>(null);
   public currentReport = this._currentReport.asReadonly();
 
-  //REVISAR ESTE METODO, QUE YO CREO QUE NO HACE FALTA
-  async loadReports(): Promise<void> {
-    const { value } = await Preferences.get({ key: this.storageKey });
-    const reports = value ? (JSON.parse(value) as Report[]) : [];
-    this._reports.set(reports);
-    //this._currentReport.set(reports[0] ?? null);
-    this._currentReport.set(null);
-  }
-
-  async captureAndSaveReport(): Promise<void> {
+  /**
+   * Captura foto y geolocalización y deja el reporte en la señal `currentReport`
+   * sin persistir. Esto permite al usuario revisar antes de confirmar (submit).
+   */
+  async captureReportDraft(): Promise<void> {
     const photo = await Camera.getPhoto({
       quality: 85,
       allowEditing: false,
@@ -32,16 +27,15 @@ export class ReportService {
       source: CameraSource.Camera,
     });
 
-    if (!photo.webPath) {
-      throw new Error('No se pudo obtener la URI de la foto capturada.');
-    }
+    if (!photo.webPath)
+      throw new Error('Could not obtain the URI of the captured photo.');
 
     const position = await Geolocation.getCurrentPosition({
       enableHighAccuracy: true,
       timeout: 10000,
     });
 
-    const newReport: Report = {
+    const draftReport: Report = {
       id: globalThis.crypto?.randomUUID?.() ?? Date.now().toString(),
       photoUri: photo.webPath,
       latitude: position.coords.latitude,
@@ -49,14 +43,26 @@ export class ReportService {
       createdAt: new Date().toISOString(),
     };
 
-    const updatedReports = [newReport, ...this._reports()];
+    this._currentReport.set(draftReport);
+  }
+
+  /**
+   * Persiste el `currentReport` en el almacenamiento y lo añade
+   * al arreglo de reports. Limpia el `currentReport` tras guardar.
+   */
+  async saveCurrentReport(): Promise<void> {
+    const current = this._currentReport();
+    if (!current) throw new Error('There is no current report to save.');
+
+    const updatedReports = [current, ...this._reports()];
 
     this._reports.set(updatedReports);
-    this._currentReport.set(newReport);
 
     await Preferences.set({
       key: this.storageKey,
       value: JSON.stringify(updatedReports),
     });
+
+    this._currentReport.set(null);
   }
 }

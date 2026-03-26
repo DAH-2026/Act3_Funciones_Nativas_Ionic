@@ -13,7 +13,6 @@ import {
 import { CommonModule } from '@angular/common';
 import { Toast } from '@capacitor/toast';
 import { ReportService } from '../../core/services/report.service';
-import { Dialog } from '@capacitor/dialog';
 
 @Component({
   selector: 'app-add-report',
@@ -38,39 +37,21 @@ export class AddReportPage {
 
   public readonly currentReport = this.reportService.currentReport;
 
-  constructor() {
-    void this.reportService.loadReports();
-  }
-
   async captureReport(): Promise<void> {
     try {
-      await this.reportService.captureAndSaveReport();
-      await this.showToast('Report saved locally.');
+      await this.reportService.captureReportDraft();
+      await this.showToast('Photo captured. Press Submit to save the report.');
     } catch {
       await this.showToast('Could not capture the report.');
     }
   }
 
-  // Muestra un diálogo nativo (simulado): no guarda nada.
-  public async showDialog(): Promise<void> {
-    const { value } = await Dialog.confirm({
-      title: 'Save Report',
-      message:
-        'Do you want to simulate saving this report? (it will not be saved)',
-      okButtonTitle: 'Yes',
-      cancelButtonTitle: 'No',
-    });
-
-    if (value) {
-      await Dialog.alert({
-        title: 'Simulation',
-        message: 'Save simulated (not stored in preferences).',
-      });
-    } else {
-      await Dialog.alert({
-        title: 'Canceled',
-        message: 'Operation canceled (not saved).',
-      });
+  async saveReport(): Promise<void> {
+    try {
+      await this.reportService.saveCurrentReport();
+      await this.showToast('Report submitted successfully.');
+    } catch (err) {
+      await this.showToast('Could not submit the report.');
     }
   }
 
