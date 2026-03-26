@@ -8,6 +8,7 @@ import { Incidencia } from '../models/incidencia.model';
 export class IncidenciaService {
   private readonly storageKey = 'incidencias';
 
+  //PREGUNTAR SI DEBE GUARDARSE AQUI TAMBIEN O CON PREFERENCES VALE
   private _incidencias = signal<Incidencia[]>([]);
   public incidencias = this._incidencias.asReadonly();
 
