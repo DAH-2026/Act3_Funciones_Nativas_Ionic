@@ -7,8 +7,8 @@
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-content>
-      @if (photoUri(); as photoUriValue) {
-      <img [src]="photoUriValue" alt="Foto de la incidencia" />
+      @if (incidenciaActual(); as incidenciaValue) {
+      <img [src]="incidenciaValue.photoUri" alt="Foto de la incidencia" />
       } @else {
       <img
         src="assets/incidencia-placeholder.svg"
@@ -18,10 +18,11 @@
     </ion-card-content>
   </ion-card>
 
-  @if (latitude() !== null && longitude() !== null) {
+  @if (incidenciaActual(); as incidenciaValue) {
   <ion-item>
     <ion-label>
-      Latitud: {{ latitude() }} - Longitud: {{ longitude() }}
+      Latitud: {{ incidenciaValue.latitude }} - Longitud: {{
+      incidenciaValue.longitude }}
     </ion-label>
   </ion-item>
   }

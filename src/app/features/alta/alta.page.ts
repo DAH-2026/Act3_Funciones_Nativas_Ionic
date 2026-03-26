@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   IonButton,
   IonCard,
@@ -9,9 +9,9 @@ import {
   IonLabel,
   IonTitle,
   IonToolbar,
-  ToastController,
 } from '@ionic/angular/standalone';
-import { IncidenciasService } from '../../core/services/incidencias.service';
+import { Toast } from '@capacitor/toast';
+import { IncidenciaService } from '../../core/services/incidencia.service';
 
 @Component({
   selector: 'app-alta',
@@ -30,20 +30,17 @@ import { IncidenciasService } from '../../core/services/incidencias.service';
   ],
 })
 export class AltaPage {
-  private readonly incidenciasService = inject(IncidenciasService);
-  private readonly toastController = inject(ToastController);
+  public readonly incidenciaService = inject(IncidenciaService);
 
-  readonly photoUri = signal<string | null>(null);
-  readonly latitude = signal<number | null>(null);
-  readonly longitude = signal<number | null>(null);
+  public readonly incidenciaActual = this.incidenciaService.incidenciaActual;
+
+  constructor() {
+    void this.incidenciaService.cargarIncidencias();
+  }
 
   async capturarIncidencia(): Promise<void> {
     try {
-      const incidencia =
-        await this.incidenciasService.crearIncidenciaDesdeCamara();
-      this.photoUri.set(incidencia.photoUri);
-      this.latitude.set(incidencia.latitude);
-      this.longitude.set(incidencia.longitude);
+      await this.incidenciaService.capturarYGuardarIncidencia();
       await this.mostrarToast('Incidencia guardada localmente.');
     } catch {
       await this.mostrarToast('No se pudo capturar la incidencia.');
@@ -51,12 +48,10 @@ export class AltaPage {
   }
 
   private async mostrarToast(message: string): Promise<void> {
-    const toast = await this.toastController.create({
-      message,
-      duration: 2000,
+    await Toast.show({
+      text: message,
+      duration: 'short',
       position: 'bottom',
     });
-
-    await toast.present();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {
   IonContent,
   IonHeader,
@@ -7,9 +7,8 @@ import {
   IonList,
   IonTitle,
   IonToolbar,
-  ToastController,
 } from '@ionic/angular/standalone';
-import { IncidenciasService } from '../../core/services/incidencias.service';
+import { Toast } from '@capacitor/toast';
 
 @Component({
   selector: 'app-listado',
@@ -26,10 +25,7 @@ import { IncidenciasService } from '../../core/services/incidencias.service';
   ],
 })
 export class ListadoPage {
-  private readonly incidenciasService = inject(IncidenciasService);
-  private readonly toastController = inject(ToastController);
-
-  readonly incidenciasPrueba = signal([
+  private _incidenciasPrueba = signal([
     {
       id: '1',
       titulo: 'Farola averiada',
@@ -46,14 +42,13 @@ export class ListadoPage {
       detalle: 'Contenedor con tapa rota en zona residencial.',
     },
   ]);
+  public incidenciasPrueba = this._incidenciasPrueba.asReadonly();
 
   async mostrarMensajeEnConstruccion(): Promise<void> {
-    const toast = await this.toastController.create({
-      message: 'En construccion',
-      duration: 2000,
+    await Toast.show({
+      text: 'En construccion',
+      duration: 'short',
       position: 'bottom',
     });
-
-    await toast.present();
   }
 }
