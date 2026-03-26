@@ -11,11 +11,11 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { Toast } from '@capacitor/toast';
-import { IncidenciaService } from '../../core/services/report.service';
+import { ReportService } from '../../core/services/report.service';
 import { Dialog } from '@capacitor/dialog';
 
 @Component({
-  selector: 'app-alta',
+  selector: 'app-add-report',
   templateUrl: './addReport.page.html',
   standalone: true,
   imports: [
@@ -30,48 +30,48 @@ import { Dialog } from '@capacitor/dialog';
     IonToolbar,
   ],
 })
-export class AltaPage {
-  public readonly incidenciaService = inject(IncidenciaService);
+export class AddReportPage {
+  public readonly reportService = inject(ReportService);
 
-  public readonly incidenciaActual = this.incidenciaService.incidenciaActual;
+  public readonly currentReport = this.reportService.currentReport;
 
   constructor() {
-    void this.incidenciaService.cargarIncidencias();
+    void this.reportService.loadReports();
   }
 
-  async capturarIncidencia(): Promise<void> {
+  async captureReport(): Promise<void> {
     try {
-      await this.incidenciaService.capturarYGuardarIncidencia();
-      await this.mostrarToast('Incidencia guardada localmente.');
+      await this.reportService.captureAndSaveReport();
+      await this.showToast('Report saved locally.');
     } catch {
-      await this.mostrarToast('No se pudo capturar la incidencia.');
+      await this.showToast('Could not capture the report.');
     }
   }
 
   // Muestra un diálogo nativo (simulado): no guarda nada.
-  public async mostrarDialog(): Promise<void> {
+  public async showDialog(): Promise<void> {
     const { value } = await Dialog.confirm({
-      title: 'Guardar Incidencia',
+      title: 'Save Report',
       message:
-        '¿Deseas simular el guardado de esta incidencia? (no se guardará)',
-      okButtonTitle: 'Sí',
+        'Do you want to simulate saving this report? (it will not be saved)',
+      okButtonTitle: 'Yes',
       cancelButtonTitle: 'No',
     });
 
     if (value) {
       await Dialog.alert({
-        title: 'Simulación',
-        message: 'Se simuló el guardado (no se guardó en preferencias).',
+        title: 'Simulation',
+        message: 'Save simulated (not stored in preferences).',
       });
     } else {
       await Dialog.alert({
-        title: 'Cancelado',
-        message: 'Operación cancelada (no se guardó).',
+        title: 'Canceled',
+        message: 'Operation canceled (not saved).',
       });
     }
   }
 
-  private async mostrarToast(message: string): Promise<void> {
+  private async showToast(message: string): Promise<void> {
     await Toast.show({
       text: message,
       duration: 'short',

@@ -1,4 +1,4 @@
-export interface Incidencia {
+export interface Report {
   id: string;
   photoUri: string;
   latitude: number;

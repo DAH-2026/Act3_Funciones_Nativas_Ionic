@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Gestor de incidencias</ion-title>
+    <ion-title>Report manager</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,18 +8,17 @@
   <ion-card>
     <ion-card-content>
       <ion-text>
-        Esta aplicacion permite registrar incidencias de mantenimiento
-        capturando una foto y la geolocalizacion exacta del lugar para su
-        seguimiento.
+        This application allows registering maintenance reports by capturing a
+        photo and the exact geolocation of the place for tracking.
       </ion-text>
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="block" (click)="irANuevaIncidencia()">
-    Alta de nueva incidencia
+  <ion-button expand="block" (click)="goToNewReport()">
+    Create new report
   </ion-button>
 
-  <ion-button expand="block" (click)="irAListado()">
-    Ver listado de incidencias
+  <ion-button expand="block" (click)="goToList()">
+    View reports list
   </ion-button>
 </ion-content>

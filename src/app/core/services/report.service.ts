@@ -2,29 +2,29 @@ import { Injectable, signal } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
 import { Preferences } from '@capacitor/preferences';
-import { Incidencia } from '../models/report.model';
+import { Report } from '../models/report.model';
 
 @Injectable({ providedIn: 'root' })
-export class IncidenciaService {
-  private readonly storageKey = 'incidencias';
+export class ReportService {
+  private readonly storageKey = 'reports';
 
   //PREGUNTAR SI DEBE GUARDARSE AQUI TAMBIEN O CON PREFERENCES VALE
-  private _incidencias = signal<Incidencia[]>([]);
-  public incidencias = this._incidencias.asReadonly();
+  private _reports = signal<Report[]>([]);
+  public reports = this._reports.asReadonly();
 
-  private _incidenciaActual = signal<Incidencia | null>(null);
-  public incidenciaActual = this._incidenciaActual.asReadonly();
+  private _currentReport = signal<Report | null>(null);
+  public currentReport = this._currentReport.asReadonly();
 
   //REVISAR ESTE METODO, QUE YO CREO QUE NO HACE FALTA
-  async cargarIncidencias(): Promise<void> {
+  async loadReports(): Promise<void> {
     const { value } = await Preferences.get({ key: this.storageKey });
-    const incidencias = value ? (JSON.parse(value) as Incidencia[]) : [];
-    this._incidencias.set(incidencias);
-    //this._incidenciaActual.set(incidencias[0] ?? null);
-    this._incidenciaActual.set(null);
+    const reports = value ? (JSON.parse(value) as Report[]) : [];
+    this._reports.set(reports);
+    //this._currentReport.set(reports[0] ?? null);
+    this._currentReport.set(null);
   }
 
-  async capturarYGuardarIncidencia(): Promise<void> {
+  async captureAndSaveReport(): Promise<void> {
     const photo = await Camera.getPhoto({
       quality: 85,
       allowEditing: false,
@@ -41,7 +41,7 @@ export class IncidenciaService {
       timeout: 10000,
     });
 
-    const nuevaIncidencia: Incidencia = {
+    const newReport: Report = {
       id: globalThis.crypto?.randomUUID?.() ?? Date.now().toString(),
       photoUri: photo.webPath,
       latitude: position.coords.latitude,
@@ -49,14 +49,14 @@ export class IncidenciaService {
       createdAt: new Date().toISOString(),
     };
 
-    const incidenciasActualizadas = [nuevaIncidencia, ...this._incidencias()];
+    const updatedReports = [newReport, ...this._reports()];
 
-    this._incidencias.set(incidenciasActualizadas);
-    this._incidenciaActual.set(nuevaIncidencia);
+    this._reports.set(updatedReports);
+    this._currentReport.set(newReport);
 
     await Preferences.set({
       key: this.storageKey,
-      value: JSON.stringify(incidenciasActualizadas),
+      value: JSON.stringify(updatedReports),
     });
   }
 }

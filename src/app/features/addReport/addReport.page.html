@@ -1,37 +1,34 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Nueva incidencia</ion-title>
+    <ion-title>New report</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-content>
-      @if (incidenciaActual(); as incidenciaValue) {
-      <img [src]="incidenciaValue.photoUri" alt="Foto de la incidencia" />
+      @if (currentReport(); as reportValue) {
+      <img [src]="reportValue.photoUri" alt="Report photo" />
       } @else {
-      <img
-        src="assets/incidencia-placeholder.svg"
-        alt="Aun no se ha capturado ninguna foto"
-      />
+      <img src="assets/report-placeholder.svg" alt="No photo captured yet" />
       }
     </ion-card-content>
   </ion-card>
 
-  @if (incidenciaActual(); as incidenciaValue) {
+  @if (currentReport(); as reportValue) {
   <ion-item>
     <ion-label>
-      Latitud: {{ incidenciaValue.latitude }} - Longitud: {{
-      incidenciaValue.longitude }}
+      Latitude: {{ reportValue.latitude }} - Longitude: {{ reportValue.longitude
+      }}
     </ion-label>
   </ion-item>
   }
 
-  <ion-button expand="block" (click)="capturarIncidencia()">
-    Obtener foto desde camara
+  <ion-button expand="block" (click)="captureReport()">
+    Take photo from camera
   </ion-button>
-  
-  <ion-button expand="block" color="tertiary" (click)="mostrarDialog()">
-    Mostrar diálogo (Capacitor)
+
+  <ion-button expand="block" color="tertiary" (click)="showDialog()">
+    Show dialog (Capacitor)
   </ion-button>
 </ion-content>

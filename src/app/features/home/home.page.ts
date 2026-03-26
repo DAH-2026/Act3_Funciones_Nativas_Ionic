@@ -12,7 +12,7 @@ import {
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-inicio',
+  selector: 'app-home',
   templateUrl: './home.page.html',
   standalone: true,
   imports: [
@@ -26,14 +26,14 @@ import { Router } from '@angular/router';
     IonCardContent,
   ],
 })
-export class InicioPage {
+export class HomePage {
   private readonly router = inject(Router);
 
-  irANuevaIncidencia(): void {
-    this.router.navigate(['/alta']);
+  goToNewReport(): void {
+    this.router.navigate(['/add']);
   }
 
-  irAListado(): void {
-    this.router.navigate(['/listado']);
+  goToList(): void {
+    this.router.navigate(['/report-list']);
   }
 }
