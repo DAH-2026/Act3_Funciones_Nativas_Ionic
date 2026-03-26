@@ -12,7 +12,7 @@ import { Toast } from '@capacitor/toast';
 
 @Component({
   selector: 'app-listado',
-  templateUrl: './listado.page.html',
+  templateUrl: './reportList.page.html',
   standalone: true,
   imports: [
     IonContent,
