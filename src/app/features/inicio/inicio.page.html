@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Gestor de incidencias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-text>
+        Esta aplicacion permite registrar incidencias de mantenimiento
+        capturando una foto y la geolocalizacion exacta del lugar para su
+        seguimiento.
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" (click)="irANuevaIncidencia()">
+    Alta de nueva incidencia
+  </ion-button>
+
+  <ion-button expand="block" (click)="irAListado()">
+    Ver listado de incidencias
+  </ion-button>
+</ion-content>
