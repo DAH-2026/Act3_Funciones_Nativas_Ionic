@@ -83,3 +83,107 @@ ion-back-button ion-icon {
   --color: $color-secondary;
   --icon-color: $color-secondary;
 }
+
+// ===== REUSABLE PAGE COMPONENTS =====
+
+/**
+ * Generic Page Toolbar
+ * Consolidates toolbar styling across all pages (home, addReport, reportList)
+ * Supports sticky header with backdrop blur and shadow effects
+ */
+.page-toolbar {
+  --background: #{$color-background};
+  --border-color: transparent;
+  --ionic-toolbar-background: #{$color-background};
+  border-bottom: 1px solid rgba($color-outline-variant, 0.15);
+  box-shadow: 0 8px 24px $shadow-color-alpha;
+  display: flex;
+  align-items: center;
+  padding: 0 $spacing-md;
+  min-height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-fixed;
+  backdrop-filter: blur(12px);
+  background: rgba($color-background, 0.8) !important;
+
+  ion-buttons {
+    margin: 0 $spacing-sm;
+  }
+}
+
+/**
+ * Generic Page Title
+ * Used for main heading inside toolbar (home, addReport, reportList titles)
+ * Uppercase, primary color, extrabold weight with letter spacing
+ */
+.page-title {
+  font-family: $font-headline;
+  font-size: $text-headline-small-size;
+  font-weight: $font-weight-extrabold;
+  color: $color-primary;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-widest;
+  margin: 0 auto 0 0;
+}
+
+/**
+ * Generic Page Content Container
+ * Base styles for ion-content in all pages
+ * Sets background and vertical padding based on page type
+ */
+.page-content {
+  --background: #{$color-background};
+  background-color: $color-background;
+  padding-top: $spacing-lg;
+  padding-bottom: $spacing-xl;
+
+  &.page-content-hero {
+    padding-top: 24px;
+  }
+}
+
+/**
+ * Generic Page Avatar Component
+ * Reusable avatar styling with size variants (sm, md, lg)
+ * Base styles: circular, overflow hidden, object-fit cover
+ */
+.page-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  // Avatar Size Variants
+  &.avatar-sm {
+    width: 32px;
+    height: 32px;
+    background-color: $color-surface-container-high;
+  }
+
+  &.avatar-md {
+    width: 40px;
+    height: 40px;
+    background-color: $color-surface-container;
+    border: 2px solid $color-surface-container;
+  }
+
+  &.avatar-lg {
+    width: 48px;
+    height: 48px;
+    background-color: $color-surface-container;
+    border: 2px solid $color-surface-container;
+  }
+
+  // Avatar Modifier: Primary Fixed Border (used in reportList)
+  &.avatar-primary-fixed {
+    border: 2px solid $color-primary-fixed;
+  }
+}
