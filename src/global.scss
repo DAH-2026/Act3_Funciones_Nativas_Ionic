@@ -71,3 +71,15 @@ body {
   vertical-align: middle;
   font-size: 1.5rem;
 }
+
+/* Back button: make arrow a darker gray/black globally */
+ion-back-button,
+ion-back-button::part(native),
+ion-back-button::part(icon),
+ion-back-button ion-icon {
+  color: $color-secondary !important;
+  fill: $color-secondary !important;
+  stroke: $color-secondary !important;
+  --color: $color-secondary;
+  --icon-color: $color-secondary;
+}
