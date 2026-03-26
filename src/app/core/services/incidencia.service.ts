@@ -15,11 +15,13 @@ export class IncidenciaService {
   private _incidenciaActual = signal<Incidencia | null>(null);
   public incidenciaActual = this._incidenciaActual.asReadonly();
 
+  //REVISAR ESTE METODO, QUE YO CREO QUE NO HACE FALTA
   async cargarIncidencias(): Promise<void> {
     const { value } = await Preferences.get({ key: this.storageKey });
     const incidencias = value ? (JSON.parse(value) as Incidencia[]) : [];
     this._incidencias.set(incidencias);
-    this._incidenciaActual.set(incidencias[0] ?? null);
+    //this._incidenciaActual.set(incidencias[0] ?? null);
+    this._incidenciaActual.set(null);
   }
 
   async capturarYGuardarIncidencia(): Promise<void> {
