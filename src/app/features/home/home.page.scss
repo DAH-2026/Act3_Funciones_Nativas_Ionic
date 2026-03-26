@@ -129,8 +129,18 @@
       #{$color-primary} 0%,
       #{$color-primary-container} 100%
     );
-    --color: #{$color-on-primary};
+    --color: #{$color-on-primary} !important;
+    --ion-color-contrast: #{$color-on-primary};
+    color: $color-on-primary !important;
     box-shadow: 0 8px 24px rgba($color-primary, 0.2);
+
+    &::part(native) {
+      color: $color-on-primary !important;
+    }
+
+    * {
+      color: $color-on-primary !important;
+    }
 
     &:active {
       transform: scale(0.98);
@@ -166,6 +176,7 @@
   gap: $spacing-md;
   position: relative;
   z-index: 2;
+  color: inherit;
 
   .action-icon-wrapper {
     position: absolute;
@@ -201,12 +212,14 @@
       letter-spacing: $letter-spacing-widest;
       opacity: 0.7;
       display: block;
+      color: inherit !important;
     }
 
     .action-title {
       @include typography-headline-medium;
       font-weight: $font-weight-bold;
       display: block;
+      color: inherit !important;
     }
   }
 }
