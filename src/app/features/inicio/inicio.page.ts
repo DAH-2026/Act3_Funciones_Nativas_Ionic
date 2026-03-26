@@ -30,10 +30,10 @@ export class InicioPage {
   private readonly router = inject(Router);
 
   irANuevaIncidencia(): void {
-    this.router.navigate(['/incidencias/nueva']);
+    this.router.navigate(['/alta']);
   }
 
   irAListado(): void {
-    this.router.navigate(['/incidencias/listado']);
+    this.router.navigate(['/listado']);
   }
 }
