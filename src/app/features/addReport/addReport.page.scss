@@ -113,19 +113,10 @@
     }
   }
 
-  .capture-overlay {
-    position: absolute;
-    inset: 0;
-    background-color: $color-surface-container;
-    opacity: 0;
-    transition: opacity $transition-base $ease-in-out-cubic;
-    pointer-events: none;
-
-    .capture-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  .capture-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 

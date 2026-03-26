@@ -36,19 +36,18 @@
       <div class="capture-grid">
         <!-- Main Capture Area -->
         <div class="main-capture-area">
+          @if (!currentReport()?.photoUri) {
           <div class="capture-placeholder">
             <ion-icon name="image-outline" class="capture-icon"></ion-icon>
             <p class="capture-text">No photo captured yet</p>
           </div>
-
-          <!-- Hidden overlay for "Taken" state -->
-          <div class="capture-overlay" [style.opacity]="0">
-            <ion-img
-              alt="Captured evidence"
-              class="capture-image"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2yPLqUiT9G25nd57A0Gnx-A3iWgzTXQkb4A2aTJp5R8lS6Z730_diBZYnOvE_NVO3LBVuHAl2HXB9v5dYwjxf52Zh5DBUMAgtVrxnkxgQJQ5wvQYoZogAJQngy4Nz2FjYfETTBx25Yn_YxUeEWIvLrFR_S4eakPCluyaH_S_qcChPdS4kFEz-nnLCpIpPaqI5LzVUUY2gz74v7SIrRgz4Bvt32NzP7Sakrme6cwZfVDGopZX-wJI8mmnEnlag0YCAoxo9P4rIRCM"
-            ></ion-img>
-          </div>
+          } @else {
+          <ion-img
+            alt="Captured evidence"
+            class="capture-image"
+            [src]="currentReport()!.photoUri"
+          ></ion-img>
+          }
         </div>
 
         <!-- Capture Controls -->
