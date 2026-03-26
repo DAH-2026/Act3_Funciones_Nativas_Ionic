@@ -11,7 +11,7 @@ import {
   IonToolbar,
   ToastController,
 } from '@ionic/angular/standalone';
-import { IncidenciasService } from '../../../../core/services/incidencias.service';
+import { IncidenciasService } from '../../core/services/incidencias.service';
 
 @Component({
   selector: 'app-alta',
@@ -39,7 +39,8 @@ export class AltaPage {
 
   async capturarIncidencia(): Promise<void> {
     try {
-      const incidencia = await this.incidenciasService.crearIncidenciaDesdeCamara();
+      const incidencia =
+        await this.incidenciasService.crearIncidenciaDesdeCamara();
       this.photoUri.set(incidencia.photoUri);
       this.latitude.set(incidencia.latitude);
       this.longitude.set(incidencia.longitude);
