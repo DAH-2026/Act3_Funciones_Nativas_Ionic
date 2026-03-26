@@ -2,26 +2,33 @@ import { Component, signal } from '@angular/core';
 import {
   IonContent,
   IonHeader,
-  IonItem,
-  IonLabel,
-  IonList,
   IonTitle,
   IonToolbar,
+  IonIcon,
+  IonImg,
+  IonMenuButton,
+  IonButtons,
+  IonButton,
 } from '@ionic/angular/standalone';
+import { CommonModule } from '@angular/common';
 import { Toast } from '@capacitor/toast';
 
 @Component({
   selector: 'app-report-list',
   templateUrl: './reportList.page.html',
+  styleUrls: ['./reportList.page.scss'],
   standalone: true,
   imports: [
+    CommonModule,
     IonContent,
     IonHeader,
-    IonItem,
-    IonLabel,
-    IonList,
     IonTitle,
     IonToolbar,
+    IonIcon,
+    IonImg,
+    IonMenuButton,
+    IonButtons,
+    IonButton,
   ],
 })
 export class ReportListPage {
