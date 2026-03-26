@@ -7,7 +7,7 @@ import {
   IonToolbar,
   IonIcon,
   IonImg,
-  IonMenuButton,
+  IonBackButton,
   IonButtons,
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
@@ -29,7 +29,7 @@ import { Dialog } from '@capacitor/dialog';
     IonToolbar,
     IonIcon,
     IonImg,
-    IonMenuButton,
+    IonBackButton,
     IonButtons,
   ],
 })

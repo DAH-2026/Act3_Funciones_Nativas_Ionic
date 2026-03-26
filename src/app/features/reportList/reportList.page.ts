@@ -6,7 +6,7 @@ import {
   IonToolbar,
   IonIcon,
   IonImg,
-  IonMenuButton,
+  IonBackButton,
   IonButtons,
   IonButton,
 } from '@ionic/angular/standalone';
@@ -26,7 +26,7 @@ import { Toast } from '@capacitor/toast';
     IonToolbar,
     IonIcon,
     IonImg,
-    IonMenuButton,
+    IonBackButton,
     IonButtons,
     IonButton,
   ],
