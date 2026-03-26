@@ -15,6 +15,7 @@
 
 // Page Header
 .page-header {
+  margin-top: 25px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -326,57 +327,10 @@
 // Submit Section
 .submit-section {
   padding-top: $spacing-lg;
+  padding-bottom: $spacing-lg;
   display: flex;
   flex-direction: column;
   gap: $spacing-md;
-
-  .submit-button {
-    --background: #{$color-primary-container};
-    --color: #{$color-on-primary} !important;
-    --ion-color-contrast: #{$color-on-primary};
-    color: $color-on-primary !important;
-    --padding-start: $spacing-lg;
-    --padding-end: $spacing-lg;
-    --padding-top: $spacing-xl;
-    --padding-bottom: $spacing-xl;
-    border-radius: $border-radius-full;
-    font-family: $font-headline;
-    font-size: $text-headline-medium-size;
-    font-weight: $font-weight-bold;
-    box-shadow: 0 8px 32px rgba($color-primary, 0.2);
-
-    &::part(native) {
-      color: $color-on-primary !important;
-    }
-
-    ion-icon {
-      margin-right: $spacing-md;
-      font-size: $text-headline-small-size;
-      color: inherit !important;
-    }
-
-    span {
-      color: inherit !important;
-    }
-
-    &:active {
-      transform: scale(0.98);
-    }
-
-    &:hover {
-      opacity: 0.95;
-    }
-  }
-
-  .submit-hint {
-    @include typography-label-small;
-    color: $color-on-surface-variant;
-    font-weight: $font-weight-medium;
-    text-align: center;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-  }
 }
 
 // Responsive
