@@ -1,34 +1,115 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>New report</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar class="add-report-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="add-report-title">Incident Ledger</ion-title>
+    <ion-buttons slot="end">
+      <div class="user-avatar">
+        <ion-img
+          alt="User"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVEG9A45FfTu-tOtC61MPgFb2VJy5BV5yJYbWPTQ_MnJImyf_mcAOmf7mSPI7LcwiSLW8wDGRFdGMdi7GfKq8bzLI0EC98F9f68Yt3G7lsMSON1Bnjkg6g30tTP8_BhQPZgFrXgrI4GQ7gbyFP59V6ruLBMHhbLyFHqgu6Dxj-xXVKCSf2hz1NnzBBvgLMlokgOOfYLB3Lnp2jfxI1h8SxG5OB6Xe5BJSPF_E0f8U6Y3mzGfcv2XctmFo_kKNMfeag-uN9TX38iuY"
+        ></ion-img>
+      </div>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-content>
-      @if (currentReport(); as reportValue) {
-      <img [src]="reportValue.photoUri" alt="Report photo" />
-      } @else {
-      <img src="assets/report-placeholder.svg" alt="No photo captured yet" />
-      }
-    </ion-card-content>
-  </ion-card>
+<ion-content [fullscreen]="true" class="add-report-content">
+  <div class="content-wrapper">
+    <!-- Page Title -->
+    <section class="page-header">
+      <h2 class="page-title">New Report</h2>
+      <p class="page-subtitle">
+        Capture evidence and location data for the active site.
+      </p>
+    </section>
 
-  @if (currentReport(); as reportValue) {
-  <ion-item>
-    <ion-label>
-      Latitude: {{ reportValue.latitude }} - Longitude: {{ reportValue.longitude
-      }}
-    </ion-label>
-  </ion-item>
-  }
+    <!-- Evidence Capture Section -->
+    <section class="evidence-section">
+      <div class="section-header">
+        <h3 class="section-title">Visual Evidence</h3>
+        <span class="required-badge">REQUIRED</span>
+      </div>
 
-  <ion-button expand="block" (click)="captureReport()">
-    Take photo from camera
-  </ion-button>
+      <!-- Bento-style Capture Grid -->
+      <div class="capture-grid">
+        <!-- Main Capture Area -->
+        <div class="main-capture-area">
+          <div class="capture-placeholder">
+            <ion-icon name="image-outline" class="capture-icon"></ion-icon>
+            <p class="capture-text">No photo captured yet</p>
+          </div>
 
-  <ion-button expand="block" color="tertiary" (click)="showDialog()">
-    Show dialog (Capacitor)
-  </ion-button>
+          <!-- Hidden overlay for "Taken" state -->
+          <div class="capture-overlay" [style.opacity]="0">
+            <ion-img
+              alt="Captured evidence"
+              class="capture-image"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2yPLqUiT9G25nd57A0Gnx-A3iWgzTXQkb4A2aTJp5R8lS6Z730_diBZYnOvE_NVO3LBVuHAl2HXB9v5dYwjxf52Zh5DBUMAgtVrxnkxgQJQ5wvQYoZogAJQngy4Nz2FjYfETTBx25Yn_YxUeEWIvLrFR_S4eakPCluyaH_S_qcChPdS4kFEz-nnLCpIpPaqI5LzVUUY2gz74v7SIrRgz4Bvt32NzP7Sakrme6cwZfVDGopZX-wJI8mmnEnlag0YCAoxo9P4rIRCM"
+            ></ion-img>
+          </div>
+        </div>
+
+        <!-- Capture Controls -->
+        <div class="capture-controls">
+          <ion-button class="take-photo-button" (click)="captureReport()" fill="solid" expand="block">
+            <ion-icon name="camera" class="button-icon"></ion-icon>
+            <span>Take Photo</span>
+          </ion-button>
+
+          <!-- Geolocation Card -->
+          <div class="geolocation-card">
+            <div class="geo-header">
+              <ion-icon name="location" class="geo-icon"></ion-icon>
+              <span class="geo-label">Current Geolocation</span>
+            </div>
+            <div class="geo-values">
+              <div class="geo-row">
+                <span class="geo-key">Latitude</span>
+                <span class="geo-value">34.0522° N</span>
+              </div>
+              <div class="geo-row">
+                <span class="geo-key">Longitude</span>
+                <span class="geo-value">118.2437° W</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location Preview (Map) Section -->
+    <section class="site-context-section">
+      <div class="section-header">
+        <h3 class="section-title">Site Context</h3>
+      </div>
+
+      <div class="map-preview">
+        <ion-img
+          alt="Site Map"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsHH53p-kzT2mTs1i_PPtiPo1esgzq6sCc4E2ldz5rhZdZKxkHFYBlEqAH02zdOS9zfkGnhROKW_h6Tmc3-0w_s7FOxnbnOFOPmsetDYh87GVD8O5qBIQyLZaBaKXSMBPT5nmB9uArtpJ7ORa6wQImB-jgBXxORpGknjMd2fjfsgmywoo2Qv8qPUCQFDgmmHDTGlH_yYp3TmEzPra1quZbg1pGFLwfh4PNSXpaeZNhLD-FR3thnR9dFdtsIgw_rWlQsjpXM0mgmeM"
+          class="map-image"
+        ></ion-img>
+        <div class="location-marker">
+          <div class="marker-pulse"></div>
+          <div class="marker-center"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Submit Action -->
+    <section class="submit-section">
+      <ion-button
+        class="submit-button"
+        (click)="showDialog()"
+        fill="solid"
+        expand="block"
+      >
+        <ion-icon name="cloud-upload" class="button-icon"></ion-icon>
+        <span>Submit Report</span>
+      </ion-button>
+      <p class="submit-hint">Data will be logged to central ledger v2.4</p>
+    </section>
+  </div>
 </ion-content>

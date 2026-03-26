@@ -1,15 +1,16 @@
 import { Component, inject } from '@angular/core';
 import {
   IonButton,
-  IonCard,
-  IonCardContent,
   IonContent,
   IonHeader,
-  IonItem,
-  IonLabel,
   IonTitle,
   IonToolbar,
+  IonIcon,
+  IonImg,
+  IonMenuButton,
+  IonButtons,
 } from '@ionic/angular/standalone';
+import { CommonModule } from '@angular/common';
 import { Toast } from '@capacitor/toast';
 import { ReportService } from '../../core/services/report.service';
 import { Dialog } from '@capacitor/dialog';
@@ -17,17 +18,19 @@ import { Dialog } from '@capacitor/dialog';
 @Component({
   selector: 'app-add-report',
   templateUrl: './addReport.page.html',
+  styleUrls: ['./addReport.page.scss'],
   standalone: true,
   imports: [
+    CommonModule,
     IonButton,
-    IonCard,
-    IonCardContent,
     IonContent,
     IonHeader,
-    IonItem,
-    IonLabel,
     IonTitle,
     IonToolbar,
+    IonIcon,
+    IonImg,
+    IonMenuButton,
+    IonButtons,
   ],
 })
 export class AddReportPage {

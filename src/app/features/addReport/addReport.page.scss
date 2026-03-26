@@ -1,0 +1,432 @@
+@import "../../../theme/variables.scss";
+
+// ===== ADD REPORT PAGE STYLES =====
+
+// Header / Toolbar
+.add-report-toolbar {
+  --background: #{$color-background};
+  --border-color: transparent;
+  --ionic-toolbar-background: #{$color-background};
+  border-bottom: 1px solid rgba($color-outline-variant, 0.15);
+  box-shadow: 0 8px 24px $shadow-color-alpha;
+  display: flex;
+  align-items: center;
+  padding: 0 $spacing-md;
+  min-height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-fixed;
+  backdrop-filter: blur(12px);
+  background: rgba($color-background, 0.8) !important;
+
+  ion-buttons {
+    margin: 0 $spacing-sm;
+  }
+}
+
+.add-report-title {
+  font-family: $font-headline;
+  font-size: $text-headline-small-size;
+  font-weight: $font-weight-extrabold;
+  color: $color-primary;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-widest;
+  margin: 0 auto 0 0;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: $color-surface-container-high;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// Main Content
+.add-report-content {
+  --background: #{$color-background};
+  background-color: $color-background;
+  padding-top: $spacing-lg;
+  padding-bottom: $spacing-xl;
+}
+
+.content-wrapper {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+// Page Header
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .page-title {
+    @include typography-headline-large;
+    color: $color-on-surface;
+    font-weight: $font-weight-bold;
+    margin: 0;
+    letter-spacing: tight;
+  }
+
+  .page-subtitle {
+    @include typography-body-small;
+    color: $color-on-surface-variant;
+    margin: 0;
+    font-weight: $font-weight-medium;
+  }
+}
+
+// Evidence Section
+.evidence-section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .section-title {
+      @include typography-label-medium;
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+      text-transform: uppercase;
+      letter-spacing: $letter-spacing-wider;
+      margin: 0;
+    }
+
+    .required-badge {
+      display: inline-block;
+      padding: 4px $spacing-sm;
+      background-color: $color-surface-container-high;
+      color: $color-on-secondary-container;
+      font-size: 10px;
+      font-weight: $font-weight-bold;
+      text-transform: uppercase;
+      border-radius: $border-radius-sm;
+      letter-spacing: $letter-spacing-tight;
+    }
+  }
+}
+
+// Capture Grid (Bento-style)
+.capture-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.main-capture-area {
+  aspect-ratio: 1;
+  border-radius: $border-radius-full;
+  background-color: $color-surface-container-low;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 2px dashed rgba($color-outline-variant, 0.3);
+
+  .capture-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+    text-align: center;
+    padding: $spacing-lg;
+
+    .capture-icon {
+      font-size: 48px;
+      color: $color-outline;
+    }
+
+    .capture-text {
+      @include typography-body-medium;
+      color: $color-on-surface-variant;
+      margin: 0;
+    }
+  }
+
+  .capture-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: $color-surface-container;
+    opacity: 0;
+    transition: opacity $transition-base $ease-in-out-cubic;
+    pointer-events: none;
+
+    .capture-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// Capture Controls
+.capture-controls {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  @media (max-width: 768px) {
+    grid-column: 1;
+  }
+}
+
+.take-photo-button {
+  --background: linear-gradient(
+    135deg,
+    #{$color-primary} 0%,
+    #{$color-primary-container} 100%
+  );
+  --color: #{$color-on-primary};
+  --padding-start: $spacing-lg;
+  --padding-end: $spacing-lg;
+  --padding-top: $spacing-lg;
+  --padding-bottom: $spacing-lg;
+  min-height: 64px;
+  border-radius: $border-radius-full;
+  font-family: $font-headline;
+  font-size: 18px;
+  font-weight: $font-weight-bold;
+  box-shadow: 0 8px 24px rgba($color-primary, 0.2);
+
+  ion-icon {
+    margin-right: $spacing-md;
+    font-size: $text-headline-medium-size;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:hover {
+    opacity: 0.95;
+  }
+}
+
+// Geolocation Card
+.geolocation-card {
+  background-color: $color-surface-container;
+  border-radius: $border-radius-full;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  border-left: 4px solid $color-primary;
+
+  .geo-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $color-primary;
+
+    .geo-icon {
+      font-size: $text-label-medium-size;
+      --ionicon-stroke-width: 32;
+    }
+
+    .geo-label {
+      @include typography-label-small;
+      font-weight: $font-weight-bold;
+      text-transform: uppercase;
+      letter-spacing: $letter-spacing-widest;
+      margin: 0;
+      display: block;
+    }
+  }
+
+  .geo-values {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .geo-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .geo-key {
+        @include typography-body-small;
+        color: $color-on-surface-variant;
+        font-weight: $font-weight-medium;
+      }
+
+      .geo-value {
+        @include typography-body-small;
+        color: $color-on-surface;
+        font-family: monospace;
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+}
+
+// Site Context Section
+.site-context-section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .section-title {
+      @include typography-label-medium;
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+      text-transform: uppercase;
+      letter-spacing: $letter-spacing-wider;
+      margin: 0;
+    }
+  }
+}
+
+.map-preview {
+  height: 192px;
+  width: 100%;
+  border-radius: $border-radius-full;
+  background-color: $color-surface-container-low;
+  overflow: hidden;
+  position: relative;
+  border-left: 4px solid $color-secondary;
+
+  .map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+  }
+
+  .location-marker {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .marker-pulse {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      background-color: rgba($color-primary, 0.2);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .marker-center {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      background-color: $color-primary;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba($color-primary, 0.5);
+      border: 2px solid white;
+      z-index: 1;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Submit Section
+.submit-section {
+  padding-top: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  .submit-button {
+    --background: #{$color-primary-container};
+    --color: #{$color-on-primary};
+    --padding-start: $spacing-lg;
+    --padding-end: $spacing-lg;
+    --padding-top: $spacing-xl;
+    --padding-bottom: $spacing-xl;
+    border-radius: $border-radius-full;
+    font-family: $font-headline;
+    font-size: $text-headline-medium-size;
+    font-weight: $font-weight-bold;
+    box-shadow: 0 8px 32px rgba($color-primary, 0.2);
+
+    ion-icon {
+      margin-right: $spacing-md;
+      font-size: $text-headline-small-size;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:hover {
+      opacity: 0.95;
+    }
+  }
+
+  .submit-hint {
+    @include typography-label-small;
+    color: $color-on-surface-variant;
+    font-weight: $font-weight-medium;
+    text-align: center;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .content-wrapper {
+    gap: $spacing-lg;
+  }
+
+  .capture-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .take-photo-button {
+    min-height: 56px;
+  }
+
+  .map-preview {
+    height: 160px;
+  }
+}

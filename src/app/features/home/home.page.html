@@ -1,24 +1,126 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Report manager</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar class="home-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="home-title">Incident Ledger</ion-title>
+    <ion-buttons slot="end">
+      <div class="user-avatar">
+        <ion-img
+          alt="User Profile"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLMr5tj0PZXhk6bXEzG3vk6_pRdflCvIgUhY8maDTMfyE3YNSynBBt9LQY797ZSkNPPCr_kIljH8xfP4cfuG0wftfOHEvIWFhio1ZzTVQZJ7yu_kYZo30WzNuLLMDZMUBbIQ0t2zM9H0Xd7bWK8GqtfGmUnffonvgBEXqTI1Ip3TSvD2QOSN1BBXsTdc3GBm7jW82W9IajHb9MLTrfE__m8KqvfDOD4XStUxQO3SIVRybCUjBSCjNJrTiLK5lZ6zlXbg8OK-jVyTY"
+        ></ion-img>
+      </div>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-content>
-      <ion-text>
-        This application allows registering maintenance reports by capturing a
-        photo and the exact geolocation of the place for tracking.
-      </ion-text>
-    </ion-card-content>
-  </ion-card>
+<ion-content [fullscreen]="true" class="home-content">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <ion-img
+      alt="Professional Field Work"
+      src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv_DVsBPlHzr-M-HnawKORRK6V8maNZOu8w58HgM0-evtlf1EVSMpDYAPomWSU6_KJ2HQXg8a23GI5TWJlOF3pfzngYh-Etm77s9hLe84zmWpyxSzBKbzKETz5EECsUgMtYO9kMs3eW28IJkRv_yy4_uNbA8IWHL19lM6BHhQyU0Z-KWDIOylcw42gDkqLFQtU2R0wQz5MxT39md-Vp5yHwXcmT2ofobTpyksgoikgHMVy5EOtuVNSv_oUYBWxQhEYkRzU53TDnps"
+      class="hero-image"
+    ></ion-img>
+  </div>
 
-  <ion-button expand="block" (click)="goToNewReport()">
-    Create new report
-  </ion-button>
+  <!-- Main Content Section -->
+  <div class="content-wrapper">
+    <!-- Hero Text -->
+    <section class="hero-text">
+      <h2 class="hero-headline">
+        Field Intelligence, <br />
+        <span class="text-primary">Precisely Recorded.</span>
+      </h2>
+      <p class="hero-description">
+        The authoritative tool for reporting site damages, maintenance
+        requirements, and safety hazards. Document visual evidence and
+        geographic coordinates with editorial-grade precision.
+      </p>
+    </section>
 
-  <ion-button expand="block" (click)="goToList()">
-    View reports list
-  </ion-button>
+    <!-- Primary Action Buttons -->
+    <section class="actions-section">
+      <!-- Report New Incident Button -->
+      <ion-button
+        class="action-button report-button"
+        (click)="goToNewReport()"
+        fill="solid"
+        expand="block"
+      >
+        <div class="action-button-content">
+          <div class="action-icon-wrapper">
+            <ion-icon name="camera" class="action-icon"></ion-icon>
+          </div>
+          <div class="action-text">
+            <span class="action-label">New Entry</span>
+            <span class="action-title">Report New Incident</span>
+          </div>
+        </div>
+      </ion-button>
+
+      <!-- Incident History Button -->
+      <ion-button
+        class="action-button history-button"
+        (click)="goToList()"
+        fill="clear"
+        expand="block"
+      >
+        <div class="action-button-content">
+          <div class="action-icon-wrapper history-icon-wrapper">
+            <ion-icon name="list" class="action-icon"></ion-icon>
+          </div>
+          <div class="action-text">
+            <span class="action-label">Archives</span>
+            <span class="action-title">Incident History</span>
+          </div>
+        </div>
+      </ion-button>
+    </section>
+
+    <!-- Stats Grid -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <ion-icon name="location" class="stat-icon"></ion-icon>
+        <p class="stat-value">12</p>
+        <p class="stat-label">Active Sites</p>
+      </div>
+      <div class="stat-card">
+        <ion-icon name="alert-circle" class="stat-icon"></ion-icon>
+        <p class="stat-value">03</p>
+        <p class="stat-label">Pending Reviews</p>
+      </div>
+    </section>
+
+    <!-- Recent Activity Section -->
+    <section class="activity-section">
+      <h4 class="activity-title">Recent Activity</h4>
+      <div class="activity-list">
+        <!-- Activity Item 1 -->
+        <div class="activity-item">
+          <div class="activity-icon-container water-damage">
+            <ion-icon name="water"></ion-icon>
+          </div>
+          <div class="activity-content">
+            <p class="activity-item-title">Main Hall Pipe Leak</p>
+            <p class="activity-item-subtitle">Reported 2h ago • Sector 7</p>
+          </div>
+          <ion-icon name="chevron-forward" class="activity-chevron"></ion-icon>
+        </div>
+
+        <!-- Activity Item 2 -->
+        <div class="activity-item">
+          <div class="activity-icon-container construction">
+            <ion-icon name="build"></ion-icon>
+          </div>
+          <div class="activity-content">
+            <p class="activity-item-title">Elevator Maintenance</p>
+            <p class="activity-item-subtitle">Completed yesterday • North Wing</p>
+          </div>
+          <ion-icon name="chevron-forward" class="activity-chevron"></ion-icon>
+        </div>
+      </div>
+    </section>
+  </div>
 </ion-content>
