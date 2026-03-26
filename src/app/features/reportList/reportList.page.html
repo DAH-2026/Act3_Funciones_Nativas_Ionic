@@ -81,62 +81,27 @@
 
       <!-- Report Items List -->
       <div class="incident-list">
-        <!-- Item 1 -->
+        @for (report of allReports(); track report.id) {
         <div class="incident-item" (click)="showUnderConstructionMessage()">
           <div class="item-image">
             <ion-img
-              alt="Broken light"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuApcseT1Bowk31LlhrbHgver0gecLcDIrfUQ11Wdd7vfgGEIoIwFPJTleWFU5s2uK-sJK3LAiydA6zWS9BFEiqNDacHreMHjUA57BVIhTf4BDhiPTSb5k2Q303jJO43qBr9xyKPUNQ7QVhfZ92dxMoDoc1PXSGP3Msbt9WqFlb_EnEY6A90yTLXr6fp70qXnhecfhLaDEeZqW2reTZWpdXLsiE6oHsVaA925C7hbha3neERbH4PLrBQUd3JoyRkSZRVr-9TQtCBQkE"
+              alt="Report photo"
+              [src]="report.photoUri || 'https://ionicframework.com/docs/img/demos/thumbnail.svg'"
             ></ion-img>
           </div>
           <div class="item-info">
-            <h4 class="item-title">Broken Perimeter Light</h4>
-            <p class="item-meta">Zone B-4 • Oct 23, 2023</p>
+            <h4 class="item-title">Reporte {{ report.id }}</h4>
+            <p class="item-meta">{{ report.createdAt }}</p>
           </div>
           <div class="item-status">
-            <span class="status-label">Status</span>
-            <span class="status-value awaiting">Awaiting Parts</span>
+            <span class="status-label">Lat/Lng</span>
+            <span class="status-value awaiting"
+              >{{ report.latitude }}, {{ report.longitude }}</span
+            >
           </div>
           <ion-icon name="chevron-forward" class="item-chevron"></ion-icon>
         </div>
-
-        <!-- Item 2 -->
-        <div class="incident-item" (click)="showUnderConstructionMessage()">
-          <div class="item-image">
-            <ion-img
-              alt="Blocked drain"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvlDQj1CiyR-iHJcfAwDGLiV6eWYhcd7rcoa8cqZS7WNkERpR0dp-KgDfXftF_pKGb61q0SuFZy4J7-Jf3IBLcz1F7iWtPiPK9LMLDlCdQz5s3mJKiipDcetrWttoTOXpGB_oym0JIkWvsOMcPAloWkcK245jCjdaPSMCr32N922AWaiMdvuNfbynYyN2EKY2kVYP0up4qNMwp_Adq2rE7NRPZGbSQngd_rRzjAD0N6zMzj1WWf3g_ENqgpZaKhOnrsFNz1OjZePU"
-            ></ion-img>
-          </div>
-          <div class="item-info">
-            <h4 class="item-title">Blocked Storm Drain</h4>
-            <p class="item-meta">North Gate • Oct 22, 2023</p>
-          </div>
-          <div class="item-status">
-            <span class="status-label">Status</span>
-            <span class="status-value in-progress">In Progress</span>
-          </div>
-          <ion-icon name="chevron-forward" class="item-chevron"></ion-icon>
-        </div>
-
-        <!-- Item 3 -->
-        <div class="incident-item" (click)="showUnderConstructionMessage()">
-          <div class="item-image">
-            <ion-img
-              alt="Fencing"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgvkU85WJTYMzURs4gE_Z0jB3EQE-arcPOqiO8iw29zNgEbQN9dhWbeaWJ_A3sw78SiyAhCWuIRgw71fdcyXNR_6OYItsr5xOGAtQeXFVNYNqLUcjPkjtr9awM3sL2jMSxFlP_-pptdEtUXcKr0bNvBTDy_fO3C1YQlUZD2iL7GAeXLbGlGeDqeASaLriwxb3A0r4t082ap7fMTIvHcGXe2HR9W1fTWnUuDzLdCER43p-sOkOeYw8-4jYnKN3mMal7zIOkTR_64PU"
-            ></ion-img>
-          </div>
-          <div class="item-info">
-            <h4 class="item-title">Fencing Instability</h4>
-            <p class="item-meta">East Perimeter • Oct 21, 2023</p>
-          </div>
-          <div class="item-status">
-            <span class="status-label">Status</span>
-            <span class="status-value scheduled">Scheduled</span>
-          </div>
-          <ion-icon name="chevron-forward" class="item-chevron"></ion-icon>
-        </div>
+        }
       </div>
     </div>
   </div>

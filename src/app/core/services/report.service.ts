@@ -15,6 +15,18 @@ export class ReportService {
   private _currentReport = signal<Report | null>(null);
   public currentReport = this._currentReport.asReadonly();
 
+  async loadReportsFromStorage() {
+    const result = await Preferences.get({ key: this.storageKey });
+    if (result.value) {
+      try {
+        const parsed = JSON.parse(result.value) as Report[];
+        this._reports.set(parsed);
+      } catch {
+        // Si hay error de parseo, no hacer nada
+      }
+    }
+  }
+
   /**
    * Captura foto y geolocalización y deja el reporte en la señal `currentReport`
    * sin persistir. Esto permite al usuario revisar antes de confirmar (submit).
