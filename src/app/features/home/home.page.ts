@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
-  templateUrl: './inicio.page.html',
+  templateUrl: './home.page.html',
   standalone: true,
   imports: [
     IonButton,

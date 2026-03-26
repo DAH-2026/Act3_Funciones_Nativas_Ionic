@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
 import { Preferences } from '@capacitor/preferences';
-import { Incidencia } from '../models/incidencia.model';
+import { Incidencia } from '../models/report.model';
 
 @Injectable({ providedIn: 'root' })
 export class IncidenciaService {

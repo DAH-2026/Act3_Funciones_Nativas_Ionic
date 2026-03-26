@@ -11,12 +11,12 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { Toast } from '@capacitor/toast';
-import { IncidenciaService } from '../../core/services/incidencia.service';
+import { IncidenciaService } from '../../core/services/report.service';
 import { Dialog } from '@capacitor/dialog';
 
 @Component({
   selector: 'app-alta',
-  templateUrl: './alta.page.html',
+  templateUrl: './addReport.page.html',
   standalone: true,
   imports: [
     IonButton,
