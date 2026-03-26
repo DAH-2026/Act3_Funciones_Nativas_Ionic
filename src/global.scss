@@ -187,3 +187,60 @@ ion-back-button ion-icon {
     border: 2px solid $color-primary-fixed;
   }
 }
+
+// ===== Confirmation Modal Styles =====
+
+ion-modal.custom-modal {
+  --background: transparent !important;
+  --backdrop-opacity: 0.45;
+  --box-shadow: none;
+}
+
+.modal-content {
+  background: $color-surface-container-highest;
+  color: $color-on-surface;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 8px 32px rgba($color-primary, 0.1);
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 350px;
+  margin: 10vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.modal-content h2 {
+  margin: 0 0 0.5rem 0;
+  color: $color-primary;
+  font-size: 1.35rem;
+  font-weight: $font-weight-bold;
+  text-align: center;
+}
+
+.modal-content p {
+  color: $color-on-surface-variant;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0 0 1.5rem 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.modal-content ion-button[color="danger"] {
+  --background: #{$color-error};
+  --color: #{$color-on-error};
+  font-weight: $font-weight-bold;
+  min-width: 100px;
+}
+
+.modal-content ion-button[fill="clear"] {
+  --color: $color-secondary;
+  font-weight: $font-weight-semibold;
+  min-width: 100px;
+}

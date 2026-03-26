@@ -32,6 +32,35 @@
           <ion-icon name="add" class="button-icon"></ion-icon>
           <span>Report</span>
         </ion-button>
+        <ion-button color="danger" fill="outline" (click)="onClearReports()">
+          <ion-icon name="trash" slot="start"></ion-icon>
+          <span>Delete All</span>
+        </ion-button>
+
+        <!-- Confirmation Modal -->
+        <ion-modal
+          class="custom-modal"
+          [isOpen]="showConfirmModal()"
+          (willDismiss)="onModalDismiss($event)"
+        >
+          <ng-template>
+            <div class="modal-content">
+              <h2>Delete all reports?</h2>
+              <p>
+                This action will remove all dynamic reports. Do you want to
+                continue?
+              </p>
+              <div class="modal-actions">
+                <ion-button color="danger" (click)="confirmClearReports()"
+                  >Delete</ion-button
+                >
+                <ion-button fill="clear" (click)="cancelClearReports()"
+                  >Cancel</ion-button
+                >
+              </div>
+            </div>
+          </ng-template>
+        </ion-modal>
       </div>
     </section>
 

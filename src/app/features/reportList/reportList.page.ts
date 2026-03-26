@@ -9,11 +9,12 @@ import {
   IonBackButton,
   IonButtons,
   IonButton,
+  IonModal,
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { Toast } from '@capacitor/toast';
 import { ReportService } from '../../core/services/report.service';
-import { computed, Signal } from '@angular/core';
+import { computed, Signal, signal } from '@angular/core';
 
 @Component({
   selector: 'app-report-list',
@@ -31,6 +32,7 @@ import { computed, Signal } from '@angular/core';
     IonBackButton,
     IonButtons,
     IonButton,
+    IonModal,
   ],
 })
 export class ReportListPage {
@@ -38,6 +40,27 @@ export class ReportListPage {
 
   constructor() {
     this.reportService.loadReportsFromStorage();
+  }
+
+  // Modal state con Angular Signal
+  private _showConfirmModal = signal(false);
+  public showConfirmModal = this._showConfirmModal.asReadonly();
+
+  onClearReports() {
+    this._showConfirmModal.set(true);
+  }
+
+  async confirmClearReports() {
+    await this.reportService.clearAllReports();
+    this._showConfirmModal.set(false);
+  }
+
+  cancelClearReports() {
+    this._showConfirmModal.set(false);
+  }
+
+  onModalDismiss(event: any) {
+    this._showConfirmModal.set(false);
   }
 
   private staticReports = [
