@@ -13,6 +13,7 @@ import {
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { Toast } from '@capacitor/toast';
+import { NavController } from '@ionic/angular';
 import { ReportService } from '../../core/services/report.service';
 import { computed, Signal, signal } from '@angular/core';
 
@@ -37,6 +38,10 @@ import { computed, Signal, signal } from '@angular/core';
 })
 export class ReportListPage {
   private reportService = inject(ReportService);
+  private navCtrl = inject(NavController);
+  goToAddReport() {
+    this.navCtrl.navigateForward(['/add']);
+  }
 
   constructor() {
     this.reportService.loadReportsFromStorage();

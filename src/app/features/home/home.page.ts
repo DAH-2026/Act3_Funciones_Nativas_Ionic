@@ -10,7 +10,7 @@ import {
   IonMenuButton,
   IonButtons,
 } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -32,13 +32,13 @@ import { CommonModule } from '@angular/common';
   ],
 })
 export class HomePage {
-  private readonly router = inject(Router);
+  private readonly navCtrl = inject(NavController);
 
   goToNewReport(): void {
-    this.router.navigate(['/add']);
+    this.navCtrl.navigateForward(['/add']);
   }
 
   goToList(): void {
-    this.router.navigate(['/report-list']);
+    this.navCtrl.navigateForward(['/report-list']);
   }
 }
