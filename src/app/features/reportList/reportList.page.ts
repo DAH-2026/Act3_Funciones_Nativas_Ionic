@@ -106,6 +106,10 @@ export class ReportListPage {
     ...this.reportService.reports(),
   ]);
 
+  public allReportsCount: Signal<number> = computed(
+    () => this.allReports().length + 1,
+  );
+
   async showUnderConstructionMessage(): Promise<void> {
     await Toast.show({
       text: 'Under construction',
