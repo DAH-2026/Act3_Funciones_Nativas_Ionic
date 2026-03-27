@@ -6,17 +6,8 @@ import { Report } from '../models/report.model';
 
 @Injectable({ providedIn: 'root' })
 export class ReportService {
-  /**
-   * Elimina todos los reports dinámicos y limpia el storage (Preferences),
-   * pero NO afecta los datos estáticos de la UI.
-   */
-  async clearAllReports(): Promise<void> {
-    this._reports.set([]);
-    await Preferences.remove({ key: this.storageKey });
-  }
   private readonly storageKey = 'reports';
 
-  //PREGUNTAR SI DEBE GUARDARSE AQUI TAMBIEN O CON PREFERENCES VALE
   private _reports = signal<Report[]>([]);
   public reports = this._reports.asReadonly();
 
@@ -84,5 +75,14 @@ export class ReportService {
     });
 
     this._currentReport.set(null);
+  }
+
+  /**
+   * Elimina todos los reports dinámicos y limpia el storage (Preferences),
+   * pero NO afecta los datos estáticos de la UI.
+   */
+  async clearAllReports(): Promise<void> {
+    this._reports.set([]);
+    await Preferences.remove({ key: this.storageKey });
   }
 }
