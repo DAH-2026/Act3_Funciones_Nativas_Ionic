@@ -35,8 +35,6 @@ import { ReportService } from '../../core/services/report.service';
 export class AddReportPage {
   public readonly reportService = inject(ReportService);
 
-  public readonly currentReport = this.reportService.currentReport;
-
   async captureReport(): Promise<void> {
     try {
       await this.reportService.captureReportDraft();

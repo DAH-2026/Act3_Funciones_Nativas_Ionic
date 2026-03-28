@@ -36,7 +36,7 @@
       <div class="capture-grid">
         <!-- Main Capture Area -->
         <div class="main-capture-area">
-          @if (!currentReport()?.photoUri) {
+          @if (!reportService.currentReport()?.photoUri) {
           <div class="capture-placeholder">
             <ion-icon name="image-outline" class="capture-icon"></ion-icon>
             <p class="capture-text">No photo captured yet</p>
@@ -45,7 +45,7 @@
           <ion-img
             alt="Captured evidence"
             class="capture-image"
-            [src]="currentReport()!.photoUri"
+            [src]="reportService.currentReport()!.photoUri"
           ></ion-img>
           }
         </div>
