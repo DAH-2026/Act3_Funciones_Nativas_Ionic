@@ -71,11 +71,19 @@
             <div class="geo-values">
               <div class="geo-row">
                 <span class="geo-key">Latitude</span>
-                <span class="geo-value">34.0522° N</span>
+                <span class="geo-value"
+                  >{{ reportService.currentReport()?.latitude != null ?
+                  (reportService.currentReport()!.latitude | number:'1.0-0') +
+                  'º' : '0º' }}</span
+                >
               </div>
               <div class="geo-row">
                 <span class="geo-key">Longitude</span>
-                <span class="geo-value">118.2437° W</span>
+                <span class="geo-value"
+                  >{{ reportService.currentReport()?.longitude != null ?
+                  (reportService.currentReport()!.longitude | number:'1.0-0') +
+                  'º' : '0º' }}</span
+                >
               </div>
             </div>
           </div>
